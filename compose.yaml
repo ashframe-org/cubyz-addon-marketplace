@@ -1,0 +1,17 @@
+services:
+  addons:
+    build: .
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      DOMAIN: https://addons.ashframe.net
+      SESSION_SECRET: ${SESSION_SECRET:?Set SESSION_SECRET in .env}
+    ports:
+      - "127.0.0.1:3000:3000"
+    volumes:
+      - ./runtime/cubyzhub.db:/app/cubyzhub.db
+      - ./runtime/uploads:/app/uploads
+      - ./runtime/avatars:/app/avatars
+      - ./runtime/banners:/app/banners
+      - ./runtime/data:/app/data
